@@ -1,4 +1,4 @@
-# <strong>Tugas PBP 6</strong>
+# <strong>Tugas PBP 7</strong>
 <p>
 1 Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.
 Stateless Widget adalah widget yang mempunyai sifat tidak akan berubah, ketika disebabkan oleh interaksi user maupun variabel dan nilai yang ditemukan. Stateful Widget adalah widget yang mempunyai sifat dinamis. Widget dapat berubah dengan adanya interaksi user maupun variabel dan nilai yang ditemukan.
@@ -36,7 +36,7 @@ c. serta menampilkan snack bar di dalam button card sederhana dengan icon
 </details>
 </br>
 
-# <strong>Tugas PBP 7</strong>
+# <strong>Tugas PBP 8</strong>
 
 1  Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
 Const digunakan untuk membuat objek yang immutable dan diinisialisasi pada waktu kompilasi, bukan waktu runtime. Objek yang diberi tanda const dapat dipakai ulang (reused) di seluruh aplikasi. Const ini berfungsi untuk membuat objek yang immutable atau tidak bisa diubah. Dan const sebaiknya digunakan untuk objek yang ingin anda set immutable dan untuk pengoptimalan memori pada objek yang berulang.
@@ -71,7 +71,7 @@ Row(
 <details>
 <summary><strong>View More</strong></summary>
 3 Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
-Elemen input yang saya gunakan pada halaman form yang saya buat kali ini adalah text field dan form field,  tapi saya tidak menggunakan seperti radio button,dropdown, switch, slider , dll.
+Elemen input yang saya gunakan pada halaman form yang saya buat kali ini adalah name, amount, description,tapi saya tidak menggunakan seperti radio button,dropdown, switch, slider , dll.
 
 4 Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
 Iya, saya mendefinisikan tema di dalam widget MaterialApp dengan contoh implementasinya sbb:
