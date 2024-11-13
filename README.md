@@ -82,3 +82,41 @@ colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 55, 111, 
 5 Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
 Untuk menangani navigasi dalam aplikasi saya menggunakan widget Navigator dengan menampilkan halaman-halaman yang ada kepada layar seakan sebagai sebuah tumpukan (stack). Untuk menavigasi sebuah halaman baru, kita dapat mengakses Navigator melalui BuildContext dan memanggil fungsi yang ada, seperti misalnya push(), pop(), serta pushReplacement().
 </details>
+
+</br>
+
+# <strong>Tugas PBP 9</strong>
+<p>
+1.Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+Model penting dibuat untuk menetapkan struktur dan tipe data yang diinginkan , hal ini juga memudahkan pemrosesan data dengan dokumentasi kode yang lebih baik dapat membantu menghindari error waktu eksekusi dan mempermudah integrasi dengan framework. 
+
+Jika struktur dan tipe data JSON tidak sesuai dengan yang diharapkan, aplikasi bisa mengalami error runtime, crash, atau malah memproses data dengan cara yang salah, yang bisa menyebabkan bug atau kerentanan keamanan. Model membantu meminimalkan risiko ini dengan memastikan data JSON selalu sesuai dengan standar yang ditetapkan.
+
+2.Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+Http pada tugas ini digunakan untuk mengambil dan menerima data dari server serta membuat aplikasi bersifat asynchronus sehingga ketika permintaan dikirim ke server tidak akan membekukan tampilan dari aplikasi dengan menggunakan keyword await dan async
+
+<details>
+<summary><strong>View More</strong></summary>
+</p>
+
+3.Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+Cookie request membantu mengelola permintaan HTTP dimana autentikasi nya berbasis pada cookie. Cookie request ini perlu dibagikan agar menjaga konsistensi sesi pengguna dengan meminimalkan pengulangan login dan otentikasi terpusat dengan membagikan hanya 1 instance saja. 
+
+4.Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+Konsepnya sebenarnya mirip dengan menampilkan di website dengan langkah langkah sbb :
+a. Pengguna memasukkan data atau melakukan input data
+b. Data yang masuk akan di validasi dan dikirimkan ke server atau backend
+c. Data akan disimpan di server dalam bentuk json 
+d. Data akan dikirimkan kembali ke aplikasi flutter apabila diminta dan memperbarui tampilan dengan tambahan data yang baru 
+
+5.Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+a. User yang baru pertama kali ke aplikasi diharapkan melakukan register terlebih dahulu dengan mengisi form registrasi yang berupa input data. Data ini akan dikirim ke django (back end) dimana django akan memvalidasi data dan django akan mengirimkan respons sukses atau tidaknya proses tersebut.
+b. Ketika sudah berhasil register, pengguna akan diarahkan ke menu login dengan memasukkan data validasi yang diminta dan data yang masuk akan dikirim ke backend untuk di cek apakah cocok dengan data pengguna yang terdaftar di database , jika tidak valid amaka django akan mengirimkan respons ke flutter untuk meminta input ulang dan jika valid django akan membuat token untuk login berikutnya. 
+c. setelah pengguna berhasil login, pengguna akan melihat tampilan menu utama aplikasi, dan jika pengguna sudah selesai, pengguna dapat logout dengan mengirimkan post ke server dan menghapus sesi di djangonya. 
+
+6.Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
+a. yang pertama saya lakukan adalah dengan membuat app autentikasi di proyek django saya.
+b. melakukan integrasi autentikasi proyek dengan flutter
+c. membuat autentikasi logout 
+
+</details>
