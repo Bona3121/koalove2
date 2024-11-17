@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:koalove2/screens/itementry_form.dart';
+import 'package:koalove2/screens/list_productentry.dart';
+import 'package:koalove2/screens/login.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 // kelas buat simpen item
 class ItemHomepage {
@@ -21,12 +25,13 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Material(
       color: color,
       borderRadius: BorderRadius.circular(12), // bikin ujungnya melengkung
       
       child: InkWell(
-        onTap: () { // ketika button ditekan
+        onTap: () async { // ketika button ditekan
           // Menampilkan pesan SnackBar saat kartu ditekan.
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -41,6 +46,36 @@ class ItemCard extends StatelessWidget {
               ),
             );
           }
+          else if (item.name == "Lihat Produk") {
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) => const ProductEntryPage()
+                ),
+            );
+          }
+          else if (item.name == "Logout") {
+            final response = await request.logout(
+                "http://127.0.0.1:8000/auth/logout/");
+            String message = response["message"];
+            if (context.mounted) {
+                if (response['status']) {
+                    String uname = response["username"];
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("$message Sampai jumpa, $uname."),
+                    ));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
+                    );
+                } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text(message),
+                        ),
+                    );
+                }
+            }
+        }
         },
         // Container untuk menyimpan Icon dan Text
         child: Container(
