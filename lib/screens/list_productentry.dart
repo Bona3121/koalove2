@@ -14,10 +14,10 @@ class ProductEntryPage extends StatefulWidget {
 class _ProductEntryPageState extends State<ProductEntryPage> {
   Future<List<ProductEntry>> fetchProduct(CookieRequest request) async {
     final response = await request.get('http://127.0.0.1:8000/json/');
-    
+
     // Melakukan decode response menjadi bentuk json
     var data = response;
-    
+
     List<ProductEntry> listProduct = [];
     for (var d in data) {
       if (d != null) {
@@ -55,26 +55,105 @@ class _ProductEntryPageState extends State<ProductEntryPage> {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (_, index) => Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("${snapshot.data![index].fields.name}"),
-                      const SizedBox(height: 10),
-                      Text("${snapshot.data![index].fields.price}"),
-                      const SizedBox(height: 10),
-                      Text("${snapshot.data![index].fields.description}"),
-                      const SizedBox(height: 10),
-                    ],
+                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ProductDetailPage(product: snapshot.data![index]),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      elevation: 5,
+                      shadowColor: Colors.grey.withOpacity(0.3),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${snapshot.data![index].fields.name}",
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              "Price: ${snapshot.data![index].fields.price}",
+                              style: const TextStyle(
+                                  fontSize: 16, color: Colors.black87),
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              "${snapshot.data![index].fields.description}",
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.black54),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               );
             }
           }
         },
+      ),
+    );
+  }
+}
+
+
+class ProductDetailPage extends StatelessWidget {
+  final ProductEntry product;
+
+  const ProductDetailPage({super.key, required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Product Details'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              product.fields.name,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Price: ${product.fields.price}",
+              style: const TextStyle(fontSize: 20, color: Colors.black87),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              product.fields.description,
+              style: const TextStyle(fontSize: 16, color: Colors.black54),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back to Product List'),
+            ),
+          ],
+        ),
       ),
     );
   }
