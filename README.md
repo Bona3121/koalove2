@@ -1,4 +1,4 @@
-[![Build status](https://build.appcenter.ms/v0.1/apps/5918f9f8-180d-432d-a643-419fcf1d8e0f/branches/main/badge)](https://appcenter.ms)git
+[![Build status](https://build.appcenter.ms/v0.1/apps/5918f9f8-180d-432d-a643-419fcf1d8e0f/branches/main/badge)](https://appcenter.ms)
 
 # <strong>Tugas PBP 7</strong>
 <p>
